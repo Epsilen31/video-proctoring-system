@@ -6,7 +6,7 @@
   "scripts": {
     "prebuild": "pnpm --filter @focus-proctor/types... run build",
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b ../../packages/types . && vite build",
     "preview": "vite preview",
     "lint": "pnpm exec eslint --cache \"src/**/*.{ts,tsx}\"",
     "format": "pnpm exec prettier --check src",
