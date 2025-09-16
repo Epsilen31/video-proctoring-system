@@ -40,7 +40,7 @@ PORT=4000
 MONGODB_URI=mongodb://127.0.0.1:27017/focusproctor
 ```
 
-1. Start in development
+4. Start in development
 
 ```bash
 pnpm dev:api   # http://localhost:4000

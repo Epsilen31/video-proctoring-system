@@ -181,7 +181,7 @@ const handleLookAway = (
     ratio >= thresholds.breachRatio &&
     timestamp - earliest >= lookAwayMs &&
     state.lookEventArmed &&
-    timestamp - state.lastEvents.LookingAway >= cooldownMs
+    timestamp - (state.lastEvents.LookingAway ?? 0) >= cooldownMs
   ) {
     const firstFlagged = state.lookWindow.find((entry) => entry.flagged);
     const startTs = firstFlagged?.ts ?? earliest;
@@ -214,7 +214,7 @@ const handleNoFace = (timestamp: number) => {
   const elapsed = timestamp - state.noFaceStart;
   if (
     elapsed >= thresholds.noFaceSeconds * 1000 &&
-    timestamp - state.lastEvents.NoFace >= cooldownMs
+    timestamp - (state.lastEvents.NoFace ?? 0) >= cooldownMs
   ) {
     triggerEvent({
       type: 'NoFace',
@@ -234,7 +234,7 @@ const handleMultipleFaces = (timestamp: number, faceCount: number) => {
   const elapsed = timestamp - state.multiFaceStart;
   if (
     elapsed >= thresholds.multipleFacesSeconds * 1000 &&
-    timestamp - state.lastEvents.MultipleFaces >= cooldownMs
+    timestamp - (state.lastEvents.MultipleFaces ?? 0) >= cooldownMs
   ) {
     triggerEvent({
       type: 'MultipleFaces',
