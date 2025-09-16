@@ -1,0 +1,23 @@
+{
+  "name": "@focus-proctor/types",
+  "version": "0.1.0",
+  "description": "Shared TypeScript types for Focus Proctor system",
+  "type": "module",
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "clean": "rimraf dist",
+    "lint": "pnpm exec eslint \"src/**/*.{ts,tsx}\"",
+    "format": "pnpm exec prettier --check src",
+    "test": "echo 'No tests yet for @focus-proctor/types'"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ]
+}

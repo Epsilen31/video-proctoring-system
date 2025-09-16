@@ -1,0 +1,16 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "outDir": "dist",
+    "rootDir": "src",
+    "tsBuildInfoFile": "./node_modules/.cache/tsconfig.api.tsbuildinfo",
+    "types": ["node"],
+    "composite": true,
+    "sourceMap": true
+  },
+  "include": ["src/**/*.ts", "eslint.config.js"],
+  "references": [{ "path": "../../packages/types" }]
+}

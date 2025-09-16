@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+      - run: pnpm install --frozen-lockfile=false
+      - run: pnpm -C focus-proctor/packages/types build
+      - run: pnpm -C focus-proctor/apps/api build
+      - run: pnpm -C focus-proctor/apps/api test --ci
+      - run: pnpm -C focus-proctor/apps/web build
+      - run: pnpm -C focus-proctor/apps/web test --run
+      - run: pnpm -C focus-proctor/apps/web exec playwright install --with-deps
+      - run: pnpm -C focus-proctor/apps/web e2e
